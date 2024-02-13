@@ -1,6 +1,7 @@
 f = open('students.txt')
 f.readline()
 students = []
+#gfh
 class Student:
   number = 0
   name = ''
