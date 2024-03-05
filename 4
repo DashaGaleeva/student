@@ -1,0 +1,39 @@
+import random
+w = open('students_password.csv', 'w', encoding='utf-8')
+f = open('students.csv', 'r', encoding='utf-8')
+n = len(f.readlines())-1
+f.close()
+f = open('students.csv', 'r', encoding='utf-8')
+f.readline()
+students = []
+class Student:
+  number = 0
+  name = ''
+  titleProjectId = 0
+  Class = ''
+  score = 0
+for i in range(n):
+  students.append(Student())
+  a = list(map(str,f.readline().split(',')))
+  students[i].number = int(a[0])
+  students[i].name = a[1]
+  students[i].titleProjectId = int(a[2])
+  students[i].Class = a[3]
+  if a[4][:4] == 'None':
+      students[i].score = 0
+  else:
+      students[i].score = int(a[4][:4])
+  for j in students[i].name:
+      k = 0
+      g = ''
+      if j == ' ' and k == 0:
+          g += '_'
+          k += 1
+      elif j == ' ' and k == 1:
+          g += ''
+      else:
+          g += j
+  b = ''.join(random.choices('AaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz0123456789', k = 8))
+  print(students[i].number, students[i].name, students[i].titleProjectId, students[i].Class, students[i].score, g, b, file=w)
+f.close()
+w.close()
