@@ -1,0 +1,41 @@
+f = open('students.csv', 'r', encoding='utf-8')
+n = len(f.readlines())-1
+f.close()
+f = open('students.csv', 'r', encoding='utf-8')
+f.readline()
+w = open('student_new.csv', 'w', encoding='utf-8')
+students = []
+class Student:
+  number = 0
+  name = ''
+  titleProjectId = 0
+  Class = ''
+  score = ''
+for i in range(n):
+  students.append(Student())
+  a = list(map(str,f.readline().split(',')))
+  students[i].number = int(a[0])
+  students[i].name = a[1]
+  students[i].titleProjectId = int(a[2])
+  students[i].Class = a[3]
+  students[i].score = a[4]
+f.close()
+k = []
+s = 0
+k1 = 0
+for i in range(n):
+    if students[i].name.count('Хадаров Владимир') == 1:
+        print('Ты получил:', students[i].score, 'за проект - ', students[i].titleProjectId)
+    if students[i].score.count('None') == 1:
+        k.append(i)
+        for j in range(n):
+            if students[j].Class == students[i].Class:
+                if students[j].score.count('None') == 1:
+                    k.append(j)
+                else:
+                    s += int(students[j].score)
+                    k1 += 1
+        for j in k:
+            students[j].score = round((s/k1),3)
+for i in range(n):
+    print(students[i].number, students[i].name, students[i].titleProjectId, students[i].Class, students[i].score, file=w)
