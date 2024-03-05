@@ -1,0 +1,32 @@
+f = open('students.csv', 'r', encoding='utf-8')
+n = len(f.readlines())-1
+f.close()
+f = open('students.csv', 'r', encoding='utf-8')
+f.readline()
+students = []
+class Student:
+  number = 0
+  name = ''
+  titleProjectId = 0
+  Class = ''
+  score = 0
+for i in range(n):
+  students.append(Student())
+  a = list(map(str,f.readline().split(',')))
+  students[i].number = int(a[0])
+  students[i].name = a[1]
+  students[i].titleProjectId = int(a[2])
+  students[i].Class = a[3]
+  if a[4][:4] == 'None':
+      a[4] = 0
+  students[i].score = int(a[4])
+f.close()
+q = str(input())
+while q!='СТОП':
+    for i in range(len(students)):
+        if students[i].titleProjectId == int(q):
+            print("Проект №", q, "делал:", students[i].name, 'он(а) получил(а) оценку - ', students[i].score)
+            break
+    else:
+        print('Ничего не найдено')
+    q = str(input())
