@@ -20,10 +20,10 @@ for i in range(n):
   students[i].Class = a[3]
   students[i].score = a[4]
 f.close()
-k = []
-s = 0
-k1 = 0
 for i in range(n):
+    k = []
+    s = 0
+    k1 = 0
     if students[i].name.count('Хадаров Владимир') == 1:
         print('Ты получил:', students[i].score, 'за проект - ', students[i].titleProjectId)
     if students[i].score.count('None') == 1:
@@ -39,3 +39,4 @@ for i in range(n):
             students[j].score = round((s/k1),3)
 for i in range(n):
     print(students[i].number, students[i].name, students[i].titleProjectId, students[i].Class, students[i].score, file=w)
+w.close()
